@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Settings
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,9 +9,39 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Settings</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-item>
+    <ion-label>Bluetooth</ion-label>
+    <ion-select value="none" okText="Okay" cancelText="Dismiss" [(ngModel)]="selectedDevice" (ionChange)="optionSelectFn();">
+    <ion-select-option *ngFor="let device of pairedDevices" [value]="device">{{device.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-button expand="block" shape="round"
+       (click)="startScanning()">scan Bluetooth
+    </ion-button>
+  </ion-item>  
+
+  <ion-item>
+    <ion-label padding>Notifications</ion-label>
+    <ion-toggle [(ngModel)]="notifications"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Settings</ion-label>
+    <ion-select value="silent" okText="Okay" cancelText="Dismiss">
+      <ion-select-option value="alarm">Alarm</ion-select-option>
+      <ion-select-option value="Voice">Voice</ion-select-option>
+      <ion-select-option value="silent">Silent</ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  <ion-item>
+    <ion-button shape="round" (click)='onConnect()'>{{buttonText}}</ion-button>   
+  </ion-item>
+
 </ion-content>
